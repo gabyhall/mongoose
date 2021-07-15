@@ -1,0 +1,24 @@
+{
+  "name": "mongoosecli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabyhall/mongoose.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gabyhall/mongoose/issues"
+  },
+  "homepage": "https://github.com/gabyhall/mongoose#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "mongoose": "^5.13.2",
+    "yargs": "^17.0.1"
+  }
+}
