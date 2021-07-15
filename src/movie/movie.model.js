@@ -12,7 +12,7 @@ const movieSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
         default: false
-    }
+    },
 })
 
 const Movie = mongoose.model('Movie', movieSchema)

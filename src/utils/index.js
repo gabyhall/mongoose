@@ -18,4 +18,22 @@ exports.read = () => {
     })
 };      
 
+exports.update = async (entryObj) => {
+    try {
+        const movie = await Movie.findOne(entryObj);
+        movie.watched = true;
+        const savedMovie = await movie.save();
+        console.log(savedMovie);
+    } catch (error) {
+        console.log(error);
+    }
+};
 
+exports.remove = async (entryObj) => { 
+    try {
+        await Movie.deleteOne(entryObj);
+        console.log("Movie deleted from list");
+    } catch (error) {
+        console.log(error);
+    }
+};
