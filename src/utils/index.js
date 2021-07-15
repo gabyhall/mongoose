@@ -9,3 +9,13 @@ exports.add = async (entryObj) => {
         console.log(error);
     }
 };
+
+exports.read = () => {
+    Movie.find(function (error, movies){ 
+         if (error) {
+        return console.log(error)
+    } else console.log(movies);
+    })
+};      
+
+
