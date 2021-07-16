@@ -1,6 +1,8 @@
 const { Movie } = require('../movie/movie.model');
 const { closeConnection } = require('../db/connection')
 
+const yargs = require('yargs');
+
 exports.add = async (entryObj) => {
     try {
         const movie = new Movie(entryObj);
@@ -13,7 +15,7 @@ exports.add = async (entryObj) => {
     }
 };
 
-exports.read = () => {
+exports.list = () => {
     Movie.find(function (error, movies){ 
          if (error) {
         return console.log(error)
@@ -30,7 +32,7 @@ exports.update = async (entryObj) => {
         const movie = await Movie.findOne(entryObj);
         movie.watched = true;
         const savedMovie = await movie.save();
-        console.log("Movie status updated:");
+        console.log("Movie status updated to watched:");
         console.log(savedMovie);
         closeConnection();
     } catch (error) {
@@ -43,7 +45,7 @@ exports.reset = async (entryObj) => {               // to reset status to unwatc
         const movie = await Movie.findOne(entryObj);
         movie.watched = false;
         const savedMovie = await movie.save();
-        console.log("Movie status reset:");
+        console.log("Movie status reset to unwatched:");
         console.log(savedMovie);
         closeConnection();
     } catch (error) {
@@ -69,4 +71,22 @@ exports.search = async (entryObj) => {              // search through the movie 
     } catch (error) {
         console.log(error);
     }
+};
+
+exports.rate = async (entryObj) => {                // changes rating of movie or adds a rating if not initially added with one //
+    try {
+        const movie = await Movie.findOne(entryObj);
+        movie.rating = yargs.argv.rating;        
+        const savedMovie = await movie.save();
+        console.log("Movie rating updated:");
+        console.log(savedMovie);
+        closeConnection();
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.sorry = () => {
+    console.log("I'm sorry, this isn't a command your movie list recognises.");
+    closeConnection();
 };
